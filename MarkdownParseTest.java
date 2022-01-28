@@ -7,9 +7,10 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class MarkdownParseTest {
+    List<String> expect;
     @Before
     public void setUp(){
-        List<String> expect = List.of("https://something.com", "some-page.html");
+        expect = List.of("https://something.com", "some-page.html");
     }
     @Test
     public void addition() {
