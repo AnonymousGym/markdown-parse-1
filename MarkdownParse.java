@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
@@ -30,5 +31,20 @@ public class MarkdownParse {
 	    String contents = Files.readString(fileName);
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
+        System.out.println(getLinksRefined(contents));
+    }
+    public static ArrayList<String> getLinksRefined(String markdown){
+        ArrayList<String> toReturn = new ArrayList<>();
+        Stack<Integer> result = new Stack<>();
+        for(int i = 0; i<markdown.length();i++){
+            if(markdown.charAt(i) == '('){
+                result.add(i);
+            }
+            if(markdown.charAt(i)==')'){
+                int a = result.pop();
+                toReturn.add(markdown.substring(a+1,i));
+            }
+        }
+        return toReturn;
     }
 }
