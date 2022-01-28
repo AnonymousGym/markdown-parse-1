@@ -41,6 +41,9 @@ public class MarkdownParse {
                 result.add(i);
             }
             if(markdown.charAt(i)==')'){
+                if(result.isEmpty()){
+                    break;
+                }
                 int a = result.pop();
                 toReturn.add(markdown.substring(a+1,i));
             }
