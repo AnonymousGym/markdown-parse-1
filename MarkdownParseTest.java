@@ -16,12 +16,13 @@ public class MarkdownParseTest {
     public void addition() {
         assertEquals(2, 1 + 1);
     }
-
+    /*
     @Test
     public void testFile1() throws IOException {
         String contents= Files.readString(Path.of("/Users/xiuyuan/Documents/GitHub/markdownparse/test-file.md"));
         
         assertEquals(MarkdownParse.getLinks(contents), expect);
     }
+    */
     
 }
