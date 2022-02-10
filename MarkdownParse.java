@@ -15,17 +15,25 @@ public class MarkdownParse {
         while(currentIndex < markdown.length()) {
             
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-
+            if(nextOpenBracket <0 ) break;
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-
+            if(nextCloseBracket <0 ) break;
             int openParen = markdown.indexOf("(", nextCloseBracket);
-
+            if(openParen <0 ) break;
             int closeParen = markdown.indexOf(")", openParen);
-
+            if(closeParen <0 ) break;
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
             System.out.println("Value of currentIndex at end of loop: "+currentIndex);
         }
         return toReturn;
+    }
+    public static void main(String[] args) throws IOException {
+		Path fileName = Path.of(args[0]);
+	    String contents = Files.readString(fileName);
+        ArrayList<String> links = getLinks(contents);
+        System.out.println(links);
+
+
     }
 }
