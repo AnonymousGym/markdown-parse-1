@@ -15,18 +15,51 @@ public class MarkdownParseTest {
     }
 
     @Test
-    public void getLinksTest() throws IOException{
+    public void getLinksTest1() throws IOException{
         int l=0;
         String content="";
-        FileReader f=new FileReader("test-file.md");
+        FileReader f=new FileReader("snippet1.md");
         while((l=f.read())!=-1){
             content+=(char)l;
         }
         f.close();
         ArrayList <String> links = MarkdownParse.getLinks(content);
         ArrayList <String> list = new ArrayList<String>();
-        list.add("https://something.com");
-        list.add("some-page.html");
+        list.add("url.com");
+        list.add("`google.com");
+        list.add("google.com");
+        list.add("ucsd.edu");
+        assertEquals(list, links);
+    }
+    @Test
+    public void getLinksTest2() throws IOException{
+        int l=0;
+        String content="";
+        FileReader f=new FileReader("snippet2.md");
+        while((l=f.read())!=-1){
+            content+=(char)l;
+        }
+        f.close();
+        ArrayList <String> links = MarkdownParse.getLinks(content);
+        ArrayList <String> list = new ArrayList<String>();
+        list.add("b.com");
+        list.add("a.com(())");
+        list.add("example.com");
+        assertEquals(list, links);
+    }
+    @Test
+    public void getLinksTest3() throws IOException{
+        int l=0;
+        String content="";
+        FileReader f=new FileReader("snippet3.md");
+        while((l=f.read())!=-1){
+            content+=(char)l;
+        }
+        f.close();
+        ArrayList <String> links = MarkdownParse.getLinks(content);
+        ArrayList <String> list = new ArrayList<String>();
+        list.add("https://ucsd-cse15l-w22.github.io/");
+        list.add("https://cse.ucsd.edu/");
         assertEquals(list, links);
     }
 /*
